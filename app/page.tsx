@@ -6,6 +6,7 @@ import { toast } from "sonner";
 export default function Home() {
   const [url, setUrl] = useState("");
   const [alias, setAlias] = useState("");
+  const [shortenedURL, setShortenedURL] = useState("");
   const [loading, setLoading] = useState(false);
 
   const handleSubmit = async (e: React.SubmitEvent<HTMLFormElement>) => {
@@ -33,6 +34,7 @@ export default function Home() {
       position: "top-center",
     });
 
+    setShortenedURL(`${baseUrl}/r/${alias}`);
     setUrl("");
     setAlias("");
     setLoading(false);
@@ -110,6 +112,14 @@ export default function Home() {
             </div>
           </div>
         </div>
+        {shortenedURL && (
+          <div className="flex flex-col gap-2 cursor-pointer">
+            <h2 className="text-2xl font-bold">Shortened URL</h2>
+            <a href={shortenedURL} target="_blank" className="text-blue-500">
+              Shortened URL: {shortenedURL}
+            </a>
+          </div>
+        )}
       </div>
     </main>
   );
