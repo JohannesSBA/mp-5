@@ -42,12 +42,12 @@ export default function Home() {
   const shortUrl = `${baseUrl}/r/${alias || "your-alias"}`;
 
   return (
-    <main className="flex min-h-screen w-full justify-center px-4 py-6 sm:px-6 sm:py-10 lg:px-8">
+    <main className="flex min-h-screen w-full justify-center px-4 py-6 sm:px-6 sm:py-10 lg:px-8 bg-amber-100">
       <div className="flex w-full max-w-5xl flex-col gap-6">
         <header className="flex w-full flex-col gap-2 rounded-md bg-white px-4 py-6 sm:px-6 sm:py-8">
           <h1 className="text-3xl font-bold sm:text-4xl">URL Shortener</h1>
           <p className="text-sm text-gray-500">
-            Enter a URL to shorten and an optional alias.
+            Enter a URL to shorten and an alias.
           </p>
         </header>
         <div className="flex w-full flex-col items-stretch gap-4 lg:flex-row lg:items-start">
@@ -57,7 +57,7 @@ export default function Home() {
           >
             <h2 className="text-2xl font-bold">Shorten a URL</h2>
             <p className="text-sm text-gray-500">
-              Enter a URL to shorten and an optional alias.
+              Enter a URL to shorten and an alias.
             </p>
             <div className="flex flex-col gap-2">
               <label htmlFor="url">URL</label>
@@ -87,6 +87,18 @@ export default function Home() {
             >
               {loading ? "Shortening..." : "Shorten"}
             </button>
+            <div className="text-xs text-gray-500 flex flex-col gap-2">
+              <p>Make sure to copy the alias and use it to access the URL.</p>
+              <p>The alias is case sensitive.</p>
+              <p>Alias has to be at least 3 characters long.</p>
+              <p>
+                The alias cannot contain spaces, dots, slashes, colons,
+                semicolons, equals, question marks, ampersands, asterisks, plus
+                signs, pipes, backslashes, less than signs, greater than signs,
+                or pipes.
+              </p>
+              <p>The alias cannot be more than 20 characters long.</p>
+            </div>
           </form>
           <div className="flex min-w-0 w-full flex-col gap-2 rounded-md border border-gray-300 bg-white p-4 sm:max-w-md sm:p-6 lg:w-88lg:max-w-none">
             <h2 className="text-2xl font-bold">Quick Preview</h2>
