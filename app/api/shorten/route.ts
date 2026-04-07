@@ -13,6 +13,12 @@ export async function POST(request: Request) {
   const client = await clientPromise;
   const db = client.db("url_shortener");
   const collection = db.collection("short_links");
+
+  const existingAlias = await collection.findOne({ alias });
+  if (existingAlias) {
+    return Response.json({ message: "Alias already exists" }, { status: 400 });
+  }
+
   const result = await collection.insertOne({
     url,
     alias,

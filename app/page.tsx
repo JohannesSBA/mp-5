@@ -7,6 +7,7 @@ export default function Home() {
   const [url, setUrl] = useState("");
   const [alias, setAlias] = useState("");
   const [loading, setLoading] = useState(false);
+
   const handleSubmit = async (e: React.SubmitEvent<HTMLFormElement>) => {
     e.preventDefault();
     console.log(url, alias);
@@ -18,6 +19,7 @@ export default function Home() {
       },
       body: JSON.stringify({ url, alias }),
     });
+
     if (!response.ok) {
       const data = (await response.json()) as { message: string };
       toast.error(data.message, {
@@ -26,10 +28,11 @@ export default function Home() {
       setLoading(false);
       return;
     }
-    const data = await response.json();
+
     toast.success("URL shortened", {
       position: "top-center",
     });
+
     setUrl("");
     setAlias("");
     setLoading(false);
@@ -85,10 +88,10 @@ export default function Home() {
               {loading ? "Shortening..." : "Shorten"}
             </button>
           </form>
-          <div className="flex min-w-0 w-full flex-col gap-2 rounded-md border border-gray-300 bg-white p-4 sm:max-w-md sm:p-6 lg:w-[22rem] lg:max-w-none">
+          <div className="flex min-w-0 w-full flex-col gap-2 rounded-md border border-gray-300 bg-white p-4 sm:max-w-md sm:p-6 lg:w-88lg:max-w-none">
             <h2 className="text-2xl font-bold">Quick Preview</h2>
             <div className="flex flex-col gap-2">
-              <div className="flex flex-col gap-2 break-words">
+              <div className="flex flex-col gap-2 wrap-break-words">
                 <h1>URl: {url}</h1>
                 <p>Alias: {shortUrl}</p>
               </div>
